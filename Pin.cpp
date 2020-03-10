@@ -43,3 +43,17 @@ void Pin::setState(uint8_t cs, uint8_t ps){
 	prev_state = ps;
 	curr_state = cs;
 }
+
+uint8_t Pin::DidRose(){
+	uint8_t s = State();
+	return PIN_RISING(s);
+}
+
+uint8_t Pin::DidFall(){
+	uint8_t s = State();
+	return PIN_FALLING(s);
+}
+uint8_t Pin::DidChange(){
+	uint8_t s = State();
+	return PIN_CHANGE(s);
+}

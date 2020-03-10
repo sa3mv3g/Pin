@@ -3,8 +3,8 @@
 
 #include "Arduino.h"
 
-#define PIN_PREVIOUS_STATE (a) (a>>1)&1
-#define PIN_CURRENT_STATE (a) a&1
+#define PIN_PREVIOUS_STATE(a) (a>>1)&1
+#define PIN_CURRENT_STATE(a) a&1
 #define PIN_CHANGE(a) ((a>>1)&1)^(a&1)
 #define PIN_RISING(a) (((a>>1)&1)^(a&1))&(a&1)
 #define PIN_FALLING(a) (((a>>1)&1)^(a&1))&(~a&1)
@@ -30,8 +30,46 @@ class Pin{
               bit 1 gives the previous state
   */
   uint8_t State();
+  /*
+  @funcname: PinNumber
+  @param : none
+  @description:
+	this will return the pin number 
+  @return:
+	pin number
+  */
   uint8_t PinNumber();
   void setState(uint8_t cs, uint8_t ps);
+  /*
+  @function: DidRose
+  @param: none
+  @description:
+	return true if rising edge detected
+  @return:
+	uint8_t: 0 means no rising edge deteced
+			 1 means rising edge detected
+  */
+  uint8_t DidRose();
+  /*
+  @function: DidFall
+  @param: none
+  @description:
+	return true if falling edge detected
+  @return:
+	uint8_t: 0 means no falling edge deteced
+			 1 means falling edge detected
+  */
+  uint8_t DidFall();
+  /*
+  @function: DidChange
+  @param: none
+  @description:
+	return true if falling edge detected
+  @return:
+	uint8_t: 0 means no edge deteced
+			 1 means edge detected
+  */
+  uint8_t DidChange();
 };
 
 #endif
